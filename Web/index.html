@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    header,footer{
+        width: 100%;
+        height: 200px;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & h1{
+            color: #fff;
+        }
+    }
+    section{
+        width: 100%;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <header>
+        <h1>Header</h1>
+    </header>
+    <nav>
+        <a href="#" id="home">Home</a>
+        <a href="#" id="shop">Shop</a>
+        <a href="#" id="product">Product</a>
+    </nav>
+    <section>
+
+    </section>
+    <footer>
+        <h1>Footer</h1>
+    </footer>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        const changePage=(page)=>{
+            $.ajax({
+                url:page,
+                cache:false,
+                success:function(respone){
+                    const res=`${respone}`;
+                    $('section').html(res);
+                }
+            })
+        }
+        changePage('homePage.html')
+        $('#shop').click(function(){
+           changePage('shop.html')
+        })
+        $('#home').click(function(){
+           changePage('homePage.html')
+        })
+        $('#product').click(function(){
+            changePage('product.html')
+        })
+    })
+</script>
